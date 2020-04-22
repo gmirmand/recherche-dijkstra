@@ -22,7 +22,17 @@ class RoadNetwork:
         return neighbours
 
     def get_distance(self, intersection1, intersection2):
-        print('renvoie leur distance')
+        distance = 0
+
+        for item in self.road_list:
+            if (item.intersection1 == intersection1 and item.intersection2 == intersection2) or (
+                    item.intersection2 == intersection1 and item.intersection1 == intersection2):
+                distance = item.distance
+
+        if distance == 0:
+            print('Les 2 intersections ne sont pas valide (non voisines ou inexistantes)')
+        else:
+            return distance
 
 
 Network = RoadNetwork([
@@ -43,3 +53,4 @@ Network = RoadNetwork([
 ])
 
 intersection0_neighbours = Network.get_neighbours(0)
+intersection07_distance = Network.get_distance(1, 7)
