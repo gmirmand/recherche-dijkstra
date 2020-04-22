@@ -11,6 +11,7 @@ class Road:
 class RoadNetwork:
     def __init__(self, road_list):
         self.road_list = road_list
+        self.nb_intersection = len(road_list)
 
     def get_neighbours(self, intersection):
         neighbours = []
@@ -33,6 +34,9 @@ class RoadNetwork:
             print('Les 2 intersections ne sont pas valide (non voisines ou inexistantes)')
         else:
             return distance
+
+    def shortest_path(self, origin, destination):
+        print('chemin le plus court')
 
 
 Network = RoadNetwork([
