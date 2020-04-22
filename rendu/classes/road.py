@@ -42,15 +42,46 @@ class RoadNetwork:
 
     def shortest_path(self, origin, destination):
         sorted_intersections = []
-        min_distances = []
+        min_distances = {}
 
         # Construct min_distances
         for item in self.intersections:
             if item == origin:
-                min_distances.append(0)
+                min_distances[item] = 0
             else:
-                min_distances.append(sys.maxsize)
-        print(min_distances)
+                min_distances[item] = sys.maxsize
+
+        #algorithm
+        intersection = origin
+        while len(sorted_intersections) != self.nb_intersection:
+            neighbours = self.get_neighbours(intersection)
+            min_dist = sys.maxsize
+            i = 999
+
+            for item in neighbours:
+                if sorted_intersections.count(item) == 0:
+                    distance = self.get_distance(intersection, item)
+
+                    if distance < min_dist:
+                        min_dist = distance
+                        i = item
+
+            sorted_intersections.append(i)
+            print(sorted_intersections)
+
+            i_neighbours = self.get_neighbours(i)
+
+            for neighbour in i_neighbours:
+                distance_v_i = self.get_distance(neighbour, i)
+
+                if min_distances.get(neighbour) > distance_v_i:
+                    min_distances[neighbour] = distance_v_i
+                    intersection = i
+        print(sorted_intersections)
+        print(min_distances.get(destination))
+
+
+
 
 
 network_road_list = [
@@ -76,4 +107,4 @@ Network = RoadNetwork(network_road_list, network_road_intersections)
 
 intersection0_neighbours = Network.get_neighbours(0)
 intersection07_distance = Network.get_distance(1, 7)
-Network.shortest_path(0, 7)
+Network.shortest_path(0, 0)
