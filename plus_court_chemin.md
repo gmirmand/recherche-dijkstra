@@ -119,7 +119,7 @@ Tant qu'il reste des intersections à trier:
 
 	* On met à jour la distance minimale entre `v` et l'origine de la manière suivante :
 	    * Soit `distance_v_i` la distance entre les intersections voisines `v` et `i`
-	    * Si `min_distances[v]` > `distance_v_i` alors on met à jour la distance minimale de v (soit `min_distances[v] = distance_v_i`)
+	    * Si `min_distances[v]` > `distance_v_i` alors on met à jour la distance minimale de v (soit `min_distances[v] = distance_v_i + min_distances[i]`)
 
 Finalement, on retourne la distance minimale entre `destination` et `origin`: `min_distances[destination]`
 
