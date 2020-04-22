@@ -1,8 +1,8 @@
-*Sujet:*
+*Recherche chemin:*
 
 
 *Membres du groupe:*
 
-- Homer Simpson
-- Ned Flanders
-- Otto Bus
+- Océane Sejourné
+- Geoffrey Allary
+- Gaëtan Mirmand
