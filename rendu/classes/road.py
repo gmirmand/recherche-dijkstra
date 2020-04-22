@@ -21,6 +21,8 @@ class RoadNetwork:
         for item in self.road_list:
             if item.intersection1 == intersection:
                 neighbours.append(item.intersection2)
+            if item.intersection2 == intersection:
+                neighbours.append(item.intersection1)
 
         return neighbours
 
