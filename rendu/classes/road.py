@@ -54,6 +54,16 @@ class RoadNetwork:
         #algorithm
         intersection = origin
         while len(sorted_intersections) != self.nb_intersection:
+
+            """
+            Petite erreur d'implémentation pour le choix de i
+            Il n'existe pas nécessairement une route qui relie i à l'origine
+            On cherche donc i parmi TOUTES les intersections du réseau (et pas les voisins de i):
+                qui a la plus petite distance depuis l'origine
+                    ==> on prend donc min_dist dans min_distances
+                    
+            Si vous fixez ça: les tests devraient passer
+            """
             neighbours = self.get_neighbours(intersection)
             min_dist = sys.maxsize
             i = 999
@@ -73,14 +83,14 @@ class RoadNetwork:
 
             for neighbour in i_neighbours:
                 distance_v_i = self.get_distance(neighbour, i)
-
-                if min_distances.get(neighbour) > distance_v_i:
-                    min_distances[neighbour] = distance_v_i
+                distance_v_n = distance_v_i + min_distances[i]  # mybad, j'ai fait une coquille dans l'énoncé: on veut la distance min entre origine et neighbours donc distance_v_i + min_distances[i]
+                if min_distances.get(neighbour) > distance_v_n:
+                    min_distances[neighbour] = distance_v_n
                     intersection = i
         print(sorted_intersections)
         print(min_distances.get(destination))
 
-
+        return min_distances.get(destination)   # il manquait le return pour récupérer la valeur dans le test
 
 
 
